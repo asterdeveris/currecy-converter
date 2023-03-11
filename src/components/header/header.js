@@ -27,7 +27,7 @@ const Header = () => {
           <p>{currencyExchangeUsd}</p>
         </div>
         <div>
-          <h3>EURO to UAH</h3>
+          <h3>EUR to UAH</h3>
           <p>{currencyExchangeEur}</p>
         </div>
       </div>

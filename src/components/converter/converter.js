@@ -9,8 +9,7 @@ const Converter = () => {
   const [secondSelect, setSecondSelect] = useState("usd");
   const [firstInputValue, setFirstInputValue] = useState("1");
   const [secondInputValue, setSecondInputValue] = useState("");
-
-  const [whichInputChanged, setWhichInputChanged] = useState(true);
+  const [upDownConversion, setUpDownConversion] = useState(true);
 
   const currencyService = new CurrencyService();
 
@@ -27,7 +26,7 @@ const Converter = () => {
 
         const rate =
           conversionRates[secondSelect] / conversionRates[firstSelect];
-        if (whichInputChanged) {
+        if (upDownConversion) {
           setSecondInputValue(+(firstInputValue * rate).toFixed(2));
         } else {
           setFirstInputValue(+(secondInputValue / rate).toFixed(2));
@@ -38,16 +37,16 @@ const Converter = () => {
     secondInputValue,
     firstSelect,
     secondSelect,
-    whichInputChanged,
+    upDownConversion,
   ]);
 
   const onFirstInputChange = (value) => {
     setFirstInputValue(value);
-    setWhichInputChanged(true);
+    setUpDownConversion(true);
   };
   const onSecondInputChange = (value) => {
     setSecondInputValue(value);
-    setWhichInputChanged(false);
+    setUpDownConversion(false);
   };
 
   return (
