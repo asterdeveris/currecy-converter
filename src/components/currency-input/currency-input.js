@@ -7,9 +7,9 @@ const CurrencyInput = ({ amount, curr }) => {
       <legend></legend>
       <input value={amount} />
       <select name="currency">
-        <option></option>
-        <option></option>
-        <option></option>
+        <option value="eur">EUR</option>
+        <option value="pln">PLN</option>
+        <option value="usd">USD</option>
       </select>
     </fieldset>
   );

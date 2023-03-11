@@ -4,7 +4,7 @@ import "./converter.scss";
 
 const Converter = () => {
   return (
-    <div classList="converter">
+    <div className="converter">
       <CurrencyInput />
       <CurrencyInput />
     </div>
