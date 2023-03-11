@@ -1,16 +1,25 @@
 import React from "react";
 import "./currency-input.scss";
 
-const CurrencyInput = ({ amount, curr }) => {
+const CurrencyInput = ({ amount, currencyOptions, onAmountChange }) => {
+  const onHandleChange = (e) => {
+    onAmountChange(e.target.value);
+  };
+
+  console.log(currencyOptions);
+  const currencies = currencyOptions.map((option) => {
+    return (
+      <option key={option} value={option}>
+        {option.toUpperCase()}
+      </option>
+    );
+  });
+
   return (
     <fieldset>
       <legend></legend>
-      <input value={amount} />
-      <select name="currency">
-        <option value="eur">EUR</option>
-        <option value="pln">PLN</option>
-        <option value="usd">USD</option>
-      </select>
+      <input type="number" value={amount} onInput={onHandleChange} />
+      <select name="currency">{currencies}</select>
     </fieldset>
   );
 };
