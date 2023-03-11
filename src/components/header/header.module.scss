@@ -1,0 +1,23 @@
+.container {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 10%;
+  background-color: rgba(31, 16, 163, 0.5);
+  padding: 20px 40px;
+  border-radius: 1rem;
+  color: white;
+
+  p {
+    font-size: 2rem;
+  }
+
+  h3 {
+    color: rgba(31, 16, 163, 1);
+    margin-bottom: 5px;
+  }
+}
+
+.exchange {
+}

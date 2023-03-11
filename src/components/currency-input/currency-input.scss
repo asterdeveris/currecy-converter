@@ -1,0 +1,19 @@
+fieldset {
+  border: 1px solid rgba(31, 16, 163, 0.5);
+  border-radius: 0.5rem;
+  width: 350px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  input {
+    padding: 10px;
+    border-right: 1px solid rgba(31, 16, 163, 0.5);
+    width: 85%;
+  }
+
+  select {
+    margin-right: 10px;
+  }
+}
