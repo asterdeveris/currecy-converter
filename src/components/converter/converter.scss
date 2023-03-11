@@ -1,3 +1,11 @@
+@import "../../breakpoints.scss";
+
 .converter {
   width: 70%;
+
+  @include lg {
+    & {
+      width: 100%;
+    }
+  }
 }

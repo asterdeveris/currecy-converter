@@ -1,3 +1,5 @@
+@import "../../breakpoints.scss";
+
 body,
 html,
 #root {
@@ -20,4 +22,16 @@ html,
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @include lg {
+    & {
+      width: 70%;
+    }
+  }
+
+  @include sm {
+    & {
+      width: 90%;
+    }
+  }
 }

@@ -4,37 +4,67 @@ import CurrencyService from "../../services/currency-service";
 import "./converter.scss";
 
 const Converter = () => {
-  const [inputValue, setInputValue] = useState("");
   const [currencyOptions, setCurrencyOptions] = useState([]);
-  const [firstInputAmount, setFirstInputAmount] = useState();
-  const [secondInputAmount, setsecondInputAmount] = useState();
+  const [firstSelect, setFirstSelect] = useState("uah");
+  const [secondSelect, setSecondSelect] = useState("usd");
+  const [firstInputValue, setFirstInputValue] = useState("1");
+  const [secondInputValue, setSecondInputValue] = useState("");
+
+  const [whichInputChanged, setWhichInputChanged] = useState(true);
+
+  const currencyService = new CurrencyService();
 
   useEffect(() => {
-    const currencyService = new CurrencyService();
     currencyService
       .getResource(
-        "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json"
+        `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur.json`
       )
       .then((data) => {
-        setCurrencyOptions([...Object.keys(data)]);
-      });
-  }, []);
+        const conversionRates = data.eur;
 
-  const onAmountChange = (value) => {
-    setInputValue(value);
+        const currency = Object.keys(conversionRates);
+        setCurrencyOptions([...currency]);
+
+        const rate =
+          conversionRates[secondSelect] / conversionRates[firstSelect];
+        if (whichInputChanged) {
+          setSecondInputValue(+(firstInputValue * rate).toFixed(2));
+        } else {
+          setFirstInputValue(+(secondInputValue / rate).toFixed(2));
+        }
+      });
+  }, [
+    firstInputValue,
+    secondInputValue,
+    firstSelect,
+    secondSelect,
+    whichInputChanged,
+  ]);
+
+  const onFirstInputChange = (value) => {
+    setFirstInputValue(value);
+    setWhichInputChanged(true);
+  };
+  const onSecondInputChange = (value) => {
+    setSecondInputValue(value);
+    setWhichInputChanged(false);
   };
 
   return (
     <div className="converter">
       <CurrencyInput
-        // amount={firstInputAmount}
-        onAmountChange={onAmountChange}
+        amount={firstInputValue}
+        onAmountChange={onFirstInputChange}
         currencyOptions={currencyOptions}
+        selectCurr={firstSelect}
+        onChangeCurr={(e) => setFirstSelect(e.target.value)}
       />
       <CurrencyInput
-        // amount={secondInputAmount}
-        onAmountChange={onAmountChange}
+        amount={secondInputValue}
+        onAmountChange={onSecondInputChange}
         currencyOptions={currencyOptions}
+        selectCurr={secondSelect}
+        onChangeCurr={(e) => setSecondSelect(e.target.value)}
       />
     </div>
   );

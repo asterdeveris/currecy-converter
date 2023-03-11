@@ -1,12 +1,17 @@
 import React from "react";
 import "./currency-input.scss";
 
-const CurrencyInput = ({ amount, currencyOptions, onAmountChange }) => {
+const CurrencyInput = ({
+  amount,
+  currencyOptions,
+  onAmountChange,
+  selectCurr,
+  onChangeCurr,
+}) => {
   const onHandleChange = (e) => {
     onAmountChange(e.target.value);
   };
 
-  console.log(currencyOptions);
   const currencies = currencyOptions.map((option) => {
     return (
       <option key={option} value={option}>
@@ -17,9 +22,10 @@ const CurrencyInput = ({ amount, currencyOptions, onAmountChange }) => {
 
   return (
     <fieldset>
-      <legend></legend>
       <input type="number" value={amount} onInput={onHandleChange} />
-      <select name="currency">{currencies}</select>
+      <select value={selectCurr} name="currency" onChange={onChangeCurr}>
+        {currencies}
+      </select>
     </fieldset>
   );
 };

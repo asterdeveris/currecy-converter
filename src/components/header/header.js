@@ -19,14 +19,17 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={style.container}>
-      <div className={style.exchange}>
-        <h3>USD to UAH</h3>
-        <p>{currencyExchangeUsd}</p>
-      </div>
-      <div>
-        <h3>EURO to UAH</h3>
-        <p>{currencyExchangeEur}</p>
+    <div>
+      <h1 className={style.header}>Currency Converter</h1>
+      <div className={style.container}>
+        <div className={style.exchange}>
+          <h3>USD to UAH</h3>
+          <p>{currencyExchangeUsd}</p>
+        </div>
+        <div>
+          <h3>EURO to UAH</h3>
+          <p>{currencyExchangeEur}</p>
+        </div>
       </div>
     </div>
   );
